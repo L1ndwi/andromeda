@@ -1,0 +1,910 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Andromeda Ogrody - profesjonalne usługi ogrodnicze w Końskie i województwie świętokrzyskim. Zakładanie ogrodów, pielęgnacja, systemy nawadniające.">
+    <meta name="keywords" content="usługi ogrodnicze Końskie, ogrodnictwo Świętokrzyskie, zakładanie ogrodów Końskie, pielęgnacja ogrodów, systemy nawadniające, mała architektura ogrodowa">
+    <meta name="author" content="Andromeda Ogrody - Adam Taler">
+    <title>Andromeda Ogrody - Profesjonalne Usługi Ogrodnicze | Końskie, Świętokrzyskie</title>
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --primary-green: #2D5016;
+            --secondary-green: #4A7C59;
+            --accent-earth: #8B4513;
+            --light-neutral: #F8F9F0;
+            --text-dark: #2C3E2D;
+            --text-light: #FFFFFF;
+            --shadow-light: rgba(45, 80, 22, 0.1);
+            --shadow-medium: rgba(45, 80, 22, 0.2);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background-color: var(--light-neutral);
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 600;
+            line-height: 1.2;
+        }
+
+        /* Navigation */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(248, 249, 240, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 1rem 0;
+            box-shadow: 0 2px 20px var(--shadow-light);
+            transition: all 0.3s ease;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            color: var(--primary-green);
+        }
+
+        .logo svg {
+            width: 50px;
+            height: 50px;
+            margin-right: 1rem;
+        }
+
+        .logo-text {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-left: 10px;
+            color: black;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-link {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 500;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-link:hover {
+            color: var(--primary-green);
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary-green);
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+        }
+
+        .hamburger span {
+            width: 25px;
+            height: 3px;
+            background: var(--primary-green);
+            margin: 3px 0;
+            transition: 0.3s;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(rgba(45, 80, 22, 0.3), rgba(45, 80, 22, 0.3)), url('resources/hero-garden.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: var(--text-light);
+            position: relative;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            padding: 2rem;
+            z-index: 2;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+        }
+
+        .hero-contact {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .hero-contact-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 1.1rem;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background: var(--accent-earth);
+            color: var(--text-light);
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(139, 69, 19, 0.3);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(139, 69, 19, 0.4);
+        }
+
+        /* Section Styles */
+        .section {
+            padding: 5rem 0;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding-left: 2rem;
+            padding-right: 2rem;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            color: var(--primary-green);
+            margin-bottom: 1rem;
+        }
+
+        .section-subtitle {
+            font-size: 1.2rem;
+            color: var(--secondary-green);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* About Section */
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 6rem;
+            align-items: center;
+        }
+
+                .about-image {
+            width: 120%;
+            height: 300px;
+            border-radius: 20px;
+            overflow: hidden; /* This ensures the image respects the rounded corners */
+        }
+
+        .about-image img {
+            width: 100%;
+            height: 105%;
+            object-fit: cover; /* This is key: it makes the image fill the space without stretching or distortion */
+        }
+
+        .about-text {
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+
+        .about-text p {
+            margin-bottom: 1.5rem;
+        }
+
+        /* Services Section */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .service-card {
+            background: var(--text-light);
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px var(--shadow-light);
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px var(--shadow-medium);
+        }
+
+        .service-icon {
+            font-size: 3rem;
+            color: var(--primary-green);
+            margin-bottom: 1.5rem;
+        }
+
+        .service-title {
+            font-size: 1.3rem;
+            color: var(--primary-green);
+            margin-bottom: 1rem;
+        }
+
+        .service-description {
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+
+        /* Gallery Section */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .gallery-item {
+            position: relative;
+            height: 250px;
+            border-radius: 15px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .gallery-item:hover {
+            transform: scale(1.05);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .gallery-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(45, 80, 22, 0.8));
+            color: var(--text-light);
+            padding: 1.5rem;
+            transform: translateY(100%);
+            transition: transform 0.3s ease;
+        }
+
+        .gallery-item:hover .gallery-overlay {
+            transform: translateY(0);
+        }
+
+        /* Contact Section */
+        .contact-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+        }
+
+        .contact-form {
+            background: var(--text-light);
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px var(--shadow-light);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: var(--primary-green);
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 1rem;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            font-family: inherit;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary-green);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .submit-button {
+            width: 100%;
+            padding: 1rem;
+            background: var(--primary-green);
+            color: var(--text-light);
+            border: none;
+            border-radius: 10px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .submit-button:hover {
+            background: var(--secondary-green);
+            transform: translateY(-2px);
+        }
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1.5rem;
+            background: var(--text-light);
+            border-radius: 15px;
+            box-shadow: 0 5px 20px var(--shadow-light);
+        }
+
+        .contact-icon {
+            font-size: 1.5rem;
+            color: var(--primary-green);
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(74, 124, 89, 0.1);
+            border-radius: 50%;
+        }
+
+        .contact-details h3 {
+            color: var(--primary-green);
+            margin-bottom: 0.5rem;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .social-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: var(--primary-green);
+            color: var(--text-light);
+            border-radius: 50%;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .social-link:hover {
+            background: var(--secondary-green);
+            transform: translateY(-2px);
+        }
+
+        .map-container {
+            margin-top: 2rem;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px var(--shadow-light);
+        }
+
+        .map-container iframe {
+            width: 100%;
+            height: 300px;
+            border: none;
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--primary-green);
+            color: var(--text-light);
+            padding: 2rem 0;
+            text-align: center;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .footer-nav {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .footer-nav a {
+            color: var(--text-light);
+            text-decoration: none;
+            transition: opacity 0.3s ease;
+        }
+
+        .footer-nav a:hover {
+            opacity: 0.8;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hamburger {
+                display: flex;
+            }
+
+            .nav-menu {
+                position: fixed;
+                left: -100%;
+                top: 80px;
+                flex-direction: column;
+                background-color: var(--light-neutral);
+                width: 100%;
+                text-align: center;
+                transition: 0.3s;
+                box-shadow: 0 10px 27px rgba(0,0,0,0.05);
+                padding: 2rem 0;
+            }
+
+            .nav-menu.active {
+                left: 0;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero p {
+                font-size: 1.1rem;
+            }
+
+            .hero-contact {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .contact-container {
+                grid-template-columns: 1fr;
+            }
+
+            .section {
+                padding: 3rem 0;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .gallery-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in-up {
+            animation: fadeInUp 0.6s ease-out;
+        }
+
+        /* Loading Animation */
+        .loading {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(255,255,255,.3);
+            border-radius: 50%;
+            border-top-color: #fff;
+            animation: spin 1s ease-in-out infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="#home" class="logo">
+                <img src="resources/logoand.svg" alt="Andromeda Ogrody Logo">
+                <span class="logo-text">Andromeda Ogrody</span>
+            </a>
+            
+            <ul class="nav-menu">
+                <li><a href="#home" class="nav-link">Home</a></li>
+                <li><a href="#about" class="nav-link">O Nas</a></li>
+                <li><a href="#services" class="nav-link">Usługi</a></li>
+                <li><a href="#gallery" class="nav-link">Galeria</a></li>
+                <li><a href="#contact" class="nav-link">Kontakt</a></li>
+            </ul>
+            
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1>Witamy w Andromeda Ogrody!</h1>
+            <p>Specjalizujemy się w profesjonalnych usługach ogrodniczych w Koński i województwie świętokrzyskim. Tworzymy piękne, funkcjonalne przestrzenie zielone dostosowane do Twoich potrzeb.</p>
+            
+            <div class="hero-contact">
+                <div class="hero-contact-item">
+                    <i class="fas fa-phone"></i>
+                    <span>724-840-560</span>
+                </div>
+                <div class="hero-contact-item">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <span>Końskie, Świętokrzyskie</span>
+                </div>
+            </div>
+            
+            <a href="#contact" class="cta-button">Skontaktuj się z nami</a>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="section">
+    <div class="section-header">
+        <h2 class="section-title">O Nas</h2>
+        <p class="section-subtitle">Poznaj naszą historię i pasję do tworzenia pięknych ogrodów</p>
+    </div>
+    
+    <div class="about-content">
+        <div class="about-image">
+            <img src="resources/adam-taler.jpg" alt="Adam Taler, właściciel Andromeda Ogrody">
+        </div>
+        <div class="about-text">
+            <p>Adam Taler, właściciel Andromeda Ogrody z Końskie w województwie świętokrzyskim, oferuje profesjonalne usługi ogrodnicze z pasją do natury. Z wieloletnim doświadczeniem w projektowaniu i pielęgnacji zieleni, pomagamy tworzyć piękne przestrzenie, które cieszą oko przez cały rok.</p>
+            
+            <p>Nasza firma specjalizuje się w kompleksowej obsłudze ogrodów - od projektu i zakładania, przez instalację systemów nawadniających i oświetlenia, aż po codzienną pielęgnację. Wierzymy, że każdy ogród może stać się wyjątkową ostoją spokoju i piękna.</p>
+            
+            <p>Pracujemy z pasją i zaangażowaniem, dbając o każdy szczegół. Naszym celem jest przekraczanie oczekiwań klientów i tworzenie ogrodów, które są nie tylko piękne, ale również funkcjonalne i łatwe w utrzymaniu.</p>
+        </div>
+    </div>
+</section>
+
+    <!-- Services Section -->
+    <section id="services" class="section">
+        <div class="section-header">
+            <h2 class="section-title">Nasze Usługi</h2>
+            <p class="section-subtitle">Kompleksowe rozwiązania ogrodnicze dostosowane do Twoich potrzeb</p>
+        </div>
+        
+        <div class="services-grid">
+            <div class="service-card">
+                <div class="service-icon">
+                    <i class="fas fa-seedling"></i>
+                </div>
+                <h3 class="service-title">Zakładanie Ogrodów</h3>
+                <p class="service-description">Kompleksowe zakładanie ogrodów od podstaw - projekt, przygotowanie terenu, nasadzenia, nawierzchnie. Tworzymy ogrody marzeń od początku do końca.</p>
+            </div>
+            
+            <div class="service-card">
+                <div class="service-icon">
+                    <i class="fas fa-leaf"></i>
+                </div>
+                <h3 class="service-title">Całoroczna Pielęgnacja</h3>
+                <p class="service-description">Profesjonalna opieka nad Twoim ogrodem przez cały rok - koszenie, nawożenie, przycinanie, ochrona roślin. Zadbamy o każdy detal.</p>
+            </div>
+            
+            <div class="service-card">
+                <div class="service-icon">
+                    <i class="fas fa-tint"></i>
+                </div>
+                <h3 class="service-title">Systemy Nawadniające</h3>
+                <p class="service-description">Montaż nowoczesnych systemów nawadniających i oświetlenia ogrodowego. Automatyzacja prac ogrodniczych dla wygody i oszczędności czasu.</p>
+            </div>
+            
+            <div class="service-card">
+                <div class="service-icon">
+                    <i class="fas fa-home"></i>
+                </div>
+                <h3 class="service-title">Aranżacja Przestrzeni</h3>
+                <p class="service-description">Projektowanie i aranżacja przestrzeni przydomowych, balkonów i tarasów. Tworzymy funkcjonalne i estetyczne ogrody w każdym rozmiarze.</p>
+            </div>
+            
+            <div class="service-card">
+                <div class="service-icon">
+                    <i class="fas fa-water"></i>
+                </div>
+                <h3 class="service-title">Oczka Wodne</h3>
+                <p class="service-description">Wykańczanie i modernizacja oczek wodnych - instalacja filtrów, pompy, oświetlenia, roślinność wodna. Stworzymy dla Ciebie rajski zakątek.</p>
+            </div>
+            
+            <div class="service-card">
+                <div class="service-icon">
+                    <i class="fas fa-hammer"></i>
+                </div>
+                <h3 class="service-title">Mała Architektura</h3>
+                <p class="service-description">Wykonanie altan, pergoli, trejaży i mebli ogrodowych z drewna. Funkcjonalne i estetyczne elementy małej architektury ogrodowej.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section id="gallery" class="section">
+        <div class="section-header">
+            <h2 class="section-title">Galeria Realizacji</h2>
+            <p class="section-subtitle">Zobacz nasze najnowsze projekty i przekonaj się o jakości naszych usług</p>
+        </div>
+        
+        <div class="gallery-grid">
+            <div class="gallery-item">
+                <img src="resources/gallery-1.jpg" alt="Zakładanie ogrodu w Końskie">
+                <div class="gallery-overlay">
+                    <h3>Zakładanie ogrodu przydomowego</h3>
+                    <p>Końskie, województwo świętokrzyskie</p>
+                </div>
+            </div>
+            
+            <div class="gallery-item">
+                <img src="resources/gallery-2.jpg" alt="Altana ogrodowa z pergolą">
+                <div class="gallery-overlay">
+                    <h3>Altana z pergolą i pnączami</h3>
+                    <p>Realizacja małej architektury ogrodowej</p>
+                </div>
+            </div>
+            
+            <div class="gallery-item">
+                <img src="resources/gallery-3.jpg" alt="Instalacja systemu nawadniającego">
+                <div class="gallery-overlay">
+                    <h3>System nawadniający</h3>
+                    <p>Profesjonalna instalacja w ogrodzie</p>
+                </div>
+            </div>
+            
+            <div class="gallery-item">
+                <img src="resources/gallery-4.jpg" alt="Oczko wodne z kamieniem">
+                <div class="gallery-overlay">
+                    <h3>Oczko wodne z naturalnym kamieniem</h3>
+                    <p>Wykończenie stawu ogrodowego</p>
+                </div>
+            </div>
+            
+            <div class="gallery-item">
+                <img src="resources/gallery-5.jpg" alt="Balkon z roślinami">
+                <div class="gallery-overlay">
+                    <h3>Aranżacja balkonu</h3>
+                    <p>Ogrody w małych przestrzeniach</p>
+                </div>
+            </div>
+            
+            <div class="gallery-item">
+                <img src="resources/gallery-6.jpg" alt="Pielęgnacja ogrodu">
+                <div class="gallery-overlay">
+                    <h3>Całoroczna pielęgnacja</h3>
+                    <p>Profesjonalna opieka nad ogrodem</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section">
+        <div class="section-header">
+            <h2 class="section-title">Kontakt</h2>
+            <p class="section-subtitle">Skontaktuj się z nami i pozwól stworzyć Twój wymarzony ogród</p>
+        </div>
+        
+        <div class="contact-container">
+            <div class="contact-form">
+                <h3 style="color: var(--primary-green); margin-bottom: 1.5rem;">Formularz kontaktowy</h3>
+                <form action="https://formspree.io/f/xqazkvpz" method="POST">
+                    <div class="form-group">
+                        <label for="name">Imię i nazwisko *</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email">Adres email *</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="phone">Numer telefonu</label>
+                        <input type="tel" id="phone" name="phone">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="message">Wiadomość *</label>
+                        <textarea id="message" name="message" placeholder="Opisz nam swój projekt ogrodu lub zapytaj o szczegóły naszych usług..." required></textarea>
+                    </div>
+                    
+                    <button type="submit" class="submit-button">
+                        <span class="button-text">Wyślij wiadomość</span>
+                        <span class="loading" style="display: none;"></span>
+                    </button>
+                </form>
+            </div>
+            
+            <div class="contact-info">
+                <div class="contact-item">
+                    <div class="contact-icon">
+                        <i class="fas fa-phone"></i>
+                    </div>
+                    <div class="contact-details">
+                        <h3>Telefon</h3>
+                        <p>724-840-560</p>
+                        <small>Czynny od poniedziałku do soboty, 8:00-18:00</small>
+                    </div>
+                </div>
+                
+                <div class="contact-item">
+                    <div class="contact-icon">
+                        <i class="fas fa-envelope"></i>
+                    </div>
+                    <div class="contact-details">
+                        <h3>Email</h3>
+                        <p>adam@andromedaogrody.pl</p>
+                        <small>Odpowiadamy w ciągu 24 godzin</small>
+                    </div>
+                </div>
+                
+                <div class="contact-item">
+                    <div class="contact-icon">
+                        <i class="fas fa-map-marker-alt"></i>
+                    </div>
+                    <div class="contact-details">
+                        <h3>Lokalizacja</h3>
+                        <p>Końskie, województwo świętokrzyskie</p>
+                        <small>Obsługujemy całe województwo świętokrzyskie</small>
+                    </div>
+                </div>
+                
+                <div class="contact-item">
+                    <div class="contact-icon">
+                        <i class="fas fa-share-alt"></i>
+                    </div>
+                    <div class="contact-details">
+                        <h3>Social Media</h3>
+                        <div class="social-links">
+                            <a href="https://instagram.com/andromeda_ogrody" class="social-link" target="_blank" rel="noopener noreferrer">
+                                <i class="fab fa-instagram"></i>
+                            </a>
+                            <a href="https://facebook.com/andromedaogrody" class="social-link" target="_blank" rel="noopener noreferrer">
+                                <i class="fab fa-facebook-f"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="map-container">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2499.1234567890123!2d20.123456789012345!3d51.123456789012345!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4711234567890ab%3A0x1234567890abcdef!2sKo%C5%84skie%2C%20Polska!5e0!3m2!1spl!2sus!4v1234567890123" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+                    </iframe>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-nav">
+                <a href="#home">Home</a>
+                <a href="#about">O Nas</a>
+                <a href="#services">Usługi</a>
+                <a href="#gallery">Galeria</a>
+                <a href="#contact">Kontakt</a>
+            </div>
+            <p>&copy; 2025 Andromeda Ogrody - Adam Taler. Wszystkie prawa zastrzeżone.</p>
+            <p style="margin-top: 0.5rem; font-size: 0.9rem; opacity: 0.8;">
+                Profesjonalne usługi ogrodnicze w Końskich i województwie świętokrzyskim
+            </p>
+        </div>
+    </footer>
+
+    <script src="main.js"></script>
+</body>
+</html>
