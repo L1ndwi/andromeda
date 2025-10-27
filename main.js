@@ -99,25 +99,33 @@ galleryItems.forEach(item => {
             z-index: 10000;
             opacity: 0;
             transition: opacity 0.3s ease;
+            padding: 1rem;
+            box-sizing: border-box;
         `;
         
         const lightboxContent = lightbox.querySelector('.lightbox-content');
+        // KEY CHANGE: The box now has no fixed height or width. It will grow based on its content.
         lightboxContent.style.cssText = `
             position: relative;
-            max-width: 95%;
-            max-height: 95%;
             background: white;
             border-radius: 15px;
-            overflow: hidden;
             transform: scale(0.8);
             transition: transform 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            max-width: 95%;
+            max-height: 95%;
         `;
         
         const lightboxImg = lightbox.querySelector('img');
+        // KEY CHANGE: The image itself is now constrained, and its size will define the box's size.
         lightboxImg.style.cssText = `
-            width: 100%;
-            height: auto;
             display: block;
+            width: auto;
+            height: auto;
+            max-width: 90vw;
+            max-height: 80vh;
         `;
         
         const lightboxInfo = lightbox.querySelector('.lightbox-info');
@@ -129,13 +137,13 @@ galleryItems.forEach(item => {
         const closeBtn = lightbox.querySelector('.lightbox-close');
         closeBtn.style.cssText = `
             position: absolute;
-            top: 15px;
-            right: 20px;
+            top: 10px;
+            right: 15px;
             font-size: 30px;
-            color: white;
+            color: black;
             cursor: pointer;
             z-index: 10001;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+            text-shadow: 1px 1px 2px rgba(255,255,255,0.7);
         `;
         
         document.body.appendChild(lightbox);
@@ -151,7 +159,9 @@ galleryItems.forEach(item => {
             lightbox.style.opacity = '0';
             lightboxContent.style.transform = 'scale(0.8)';
             setTimeout(() => {
-                document.body.removeChild(lightbox);
+                if (document.body.contains(lightbox)) {
+                    document.body.removeChild(lightbox);
+                }
             }, 300);
         };
         
