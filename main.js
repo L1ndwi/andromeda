@@ -181,58 +181,6 @@ galleryItems.forEach(item => {
     });
 });
 
-// Form handling
-const contactForm = document.querySelector('.contact-form form');
-if (contactForm) {
-    contactForm.addEventListener('submit', function(e) {
-        e.preventDefault();
-        
-        const submitButton = this.querySelector('.submit-button');
-        const buttonText = submitButton.querySelector('.button-text');
-        const loading = submitButton.querySelector('.loading');
-        
-        // Show loading state
-        buttonText.style.display = 'none';
-        loading.style.display = 'inline-block';
-        submitButton.disabled = true;
-        
-        // Simulate form submission (replace with actual Formspree handling)
-        setTimeout(() => {
-            // Reset button
-            buttonText.style.display = 'inline';
-            loading.style.display = 'none';
-            submitButton.disabled = false;
-            
-            // Show success message
-            const successMessage = document.createElement('div');
-            successMessage.className = 'success-message';
-            successMessage.innerHTML = `
-                <div style="
-                    background: #4CAF50;
-                    color: white;
-                    padding: 1rem;
-                    border-radius: 10px;
-                    margin-top: 1rem;
-                    text-align: center;
-                    animation: fadeInUp 0.5s ease;
-                ">
-                    <i class="fas fa-check-circle"></i> Dziękujemy za wiadomość! Skontaktujemy się z Tobą w ciągu 24 godzin.
-                </div>
-            `;
-            
-            this.appendChild(successMessage);
-            this.reset();
-            
-            // Remove success message after 5 seconds
-            setTimeout(() => {
-                if (successMessage.parentNode) {
-                    successMessage.parentNode.removeChild(successMessage);
-                }
-            }, 5000);
-            
-        }, 2000);
-    });
-}
 
 // Parallax effect for hero section
 window.addEventListener('scroll', () => {
